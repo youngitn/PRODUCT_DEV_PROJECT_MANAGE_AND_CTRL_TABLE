@@ -4,10 +4,9 @@ package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE;
 import SomeUtils._hproc;
 import SomeUtils.Bean.UserInfoViewBean;
 
-
 /**
- * 進入新增頁面時,需要一併帶出的資料在此設定.
- * 主要用於帶出資料庫欄位以外的資料.
+ * 進入新增頁面時,需要一併帶出的資料在此設定. 主要用於帶出資料庫欄位以外的資料.
+ * 
  * @author b0050
  *
  */
@@ -19,8 +18,9 @@ public class GoToAdd extends _hproc {
 		//
 		UserInfoViewBean nowUser = getUserInfo(getUser());
 		setValue("REQ_EMPID", getUser());
-		setValue("REQ_EMPID_NAME",nowUser.getHecname());
-		setValue("REQ_DEPT_NAME",nowUser.getDepName());
+		setValue("REQ_EMPID_NAME", nowUser.getHecname());
+		setValue("REQ_DEPT_NAME", nowUser.getDepName());
+		setValue("DATE", getToday("YYYYmmdd"));
 		return value;
 	}
 

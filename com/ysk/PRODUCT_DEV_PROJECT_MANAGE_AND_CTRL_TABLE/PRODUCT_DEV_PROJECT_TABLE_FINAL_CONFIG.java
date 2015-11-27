@@ -2,7 +2,7 @@ package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE;
 /**
  * 用於取得簽核人員的規則表,當中資料成員涉為int,方便使用switch.
  */
-public interface LAB_RECBOOK_USING_APPLY_FINAL_CONFIG {
+public interface PRODUCT_DEV_PROJECT_TABLE_FINAL_CONFIG {
 	/**
 	 * 取得研發-實驗室紀錄簿管理人於  table HRUSER_DEPT_BAS 中的號碼. 
 	 */
@@ -22,4 +22,6 @@ public interface LAB_RECBOOK_USING_APPLY_FINAL_CONFIG {
 	 * 品管課 
 	 */
 	final static int QC_DEPT_NO = 18;
+	
+	final static String USING_TABLE = "PRODUCT_DEV_PROJECT_TABLE";
 }

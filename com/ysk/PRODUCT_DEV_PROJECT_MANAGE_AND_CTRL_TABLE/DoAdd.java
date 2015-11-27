@@ -1,6 +1,6 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE;
 
-//import com.ysk.bean.UserInfoViewBean;
+//com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/DoAdd;
 import SomeUtils._hproc;
 
 import com.ysk.field.Flow;
@@ -12,41 +12,27 @@ import com.ysk.field.Flow;
  *
  */
 public class DoAdd extends _hproc {
-	String nowTable = "LAB_RECBOOK_USING_APPLY";
+
 
 	@Override
 	public String action(String value) throws Throwable {
 		
 		String[][] field = { 				
-				{ "RECBOOK_NAME", "PNO", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "DATE", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "P_NAME", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "DESCRIPTION", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "EXP_DATE", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "GENERIC_CNAME", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "GENERIC_ENAME", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "DOSAGE_FORM", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "DOSE", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "PACKING", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "DEV_TYPE", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "MEDICINE_TYPE", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "SALES_ATTACHED", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "LAW_ATTACHED", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "PURCH_ATTACHED", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "PROCESS_ATTACHED", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "RD_ATTACHED", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "IS_APPROVE", "紀錄簿名稱" },
-				{ "RECBOOK_NAME", "PROJECT_NO", "紀錄簿名稱" }
-		
+				{"P_NAME", "品項名稱" },
+				{"DESCRIPTION", "說明" },
+				{"EXP_DATE", "預定完成日期" },
+				{"GENERIC_CNAME", "藥品通用名稱" },
+				{"GENERIC_ENAME", "藥品英文名稱" },
+				{"DOSAGE_FORM", "劑型" },
+				{"DOSE", "劑量" },
+				{"PACKING", "包裝規格" },
+				{"DEV_TYPE", "開發類型" },
+				{"MEDICINE_TYPE", "藥品分類" },
+
 		};
-		String condition =" REQ_EMPID = '"+getValue("REQ_EMPID").trim()+"' and REC_START_DATE >= '" + getValue("REC_START_DATE").trim()
-				+ "'";
-		String[][] ret = selectFromWhere("PNO", nowTable, condition);
-		if (checkEmpty(field)) {
-			if (ret.length == 0) {
-				DoInster(nowTable, "課主管");
-				sendEmailAfterAdd(getValue("REQ_EMPID").trim(),"SUB:課主管","內容:課主管",null,"",Flow.FLOW_SING_LEVEL_11);
-			}
+		if (checkEmpty(field)) {		
+			DoInster(PRODUCT_DEV_PROJECT_TABLE_FINAL_CONFIG.USING_TABLE, "課主管");
+			sendEmailAfterAdd(getValue("REQ_EMPID").trim(),"SUB:課主管","內容:課主管",null,"",Flow.FLOW_SING_LEVEL_11);		
 		}
 		return value;
 	}
