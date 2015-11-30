@@ -27,11 +27,13 @@ public class DoQuery extends _hproc {
 		 * 以下開始為非主檔資料表資料. 查詢簽核狀態的SQL指令 直接用字串參數丟進去做為DB欄位名稱,"簽核狀態"為 table
 		 * header,0表示在setQueryTable中不做為查詢條件.
 		 */
+		
 		list.add(new QueryItem(
 				"(select F_INP_STAT from LAB_RECBOOK_USING_APPLY_FLOWC where PNO=a.PNO)",
 				"簽核狀態", 0));
 		list.add(new QueryItem("'簽核紀錄'", "簽核紀錄", 0));
 		list.add(new QueryItem("'詳細資訊'", "詳細資訊", 0));
+		list.add(new QueryItem("'編輯'", "管控時間檔", 0));
 
 		/**
 		 * 參數 1,4 代表
