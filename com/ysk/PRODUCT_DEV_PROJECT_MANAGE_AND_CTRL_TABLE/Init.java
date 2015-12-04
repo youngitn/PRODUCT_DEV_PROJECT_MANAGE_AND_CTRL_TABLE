@@ -1,8 +1,7 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE;
 
-//com.ysk.LAB_RECBOOK_USING_APPLY.Init
+//com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.Init
 import SomeUtils._hproc;
-import SomeUtils.Bean.UserInfoViewBean;
 
 /**
  * 進入(基本上跟新增頁面同頁)簽核頁面變執行的程式. 主要用於帶出資料庫欄位以外的資料.
@@ -15,18 +14,23 @@ public class Init extends _hproc {
 	@Override
 	public String action(String paramString) throws Throwable {
 		// TODO Auto-generated method stub
+		if (POSITION == 5) {
 
-		UserInfoViewBean nowUser = getUserInfo(getUser());
-		setValue("REQ_EMPID", getUser());
-		setValue("REQ_EMPID_NAME", nowUser.getHecname());
-		setValue("REQ_DEPT_NAME", nowUser.getDepName());
-		if (POSITION == 5 && getState().equals("紀錄簿管理人")) {
-			setEditable("RECBOOK_NO", true);
-			// 去除空白
-			if (getValue("RECBOOK_NO").trim().length() == 0) {
-				setValue("RECBOOK_NO", "");
+			if (getState().equals("研發經辦")) {
+				setEditable("RD_ATTACHED", true);
 			}
-
+			if (getState().equals("行銷經辦")) {
+				setEditable("SALES_ATTACHED", true);
+			}
+			if (getState().equals("法規經辦")) {
+				setEditable("LAW_ATTACHED", true);
+			}
+			if (getState().equals("採購課經辦")) {
+				setEditable("PURCH_ATTACHED", true);
+			}
+			if (getState().equals("製程發展經辦")) {
+				setEditable("PROCESS_ATTACHED", true);
+			}
 		}
 
 		return null;
