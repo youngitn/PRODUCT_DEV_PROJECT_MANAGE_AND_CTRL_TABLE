@@ -13,7 +13,8 @@ import SomeUtils.DAO.ProductDevProjectTableDAO;
  *
  */
 public class QueryTableButton_Detail extends _bproc {
-
+	
+	@SuppressWarnings({ "unused", "deprecation" })
 	@Override
 	public String getDefaultValue(String arg0) throws Throwable {
 		// 0:id 1:name
