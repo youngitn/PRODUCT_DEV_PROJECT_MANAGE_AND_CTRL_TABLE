@@ -1,5 +1,5 @@
-package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_SCHEDULE.Notify;
-//com/ysk/LAB_RECBOOK_USING_APPLY/Notify/EmailNotify
+package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.Notify;
+//com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/Notify/EmailNotify
 import java.util.Vector;
 
 import SomeUtils._bNotify;
