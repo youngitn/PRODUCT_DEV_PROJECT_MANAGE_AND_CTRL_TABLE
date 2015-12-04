@@ -11,6 +11,7 @@ import SomeUtils.Bean.UserInfoViewBean;
  *
  */
 public class GoToAdd extends _hproc {
+	@SuppressWarnings("deprecation")
 	@Override
 	public String action(String value) throws Throwable {
 		// 可自定HTML版本各欄位的預設值與按鈕的動作
