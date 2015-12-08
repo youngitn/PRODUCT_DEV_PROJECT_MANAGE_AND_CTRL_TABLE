@@ -1,35 +1,32 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.FlowApprovedAction;
-
-//com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/FlowApprovedAction/UpdateAttached
-import java.io.File;
-
+//com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/FlowApprovedAction/UpdateProjectNo
 import jcx.jform.bProcFlow;
 import SomeUtils.Bean.ProductDevProjectTableBean;
 import SomeUtils.DAO.ProductDevProjectTableDAO;
 
-public class UpdateAttached extends bProcFlow {
+public class UpdateProjectNo extends bProcFlow {
 	/**
-	 * 當流程關卡=研發經辦時,
-	 * 開放研發專用夾檔欄位,並更新到資料庫中。
+	 * 當流程關卡=會計主管時,
+	 * 開放專案編號欄位,並更新到資料庫中。
 	 */
 	@Override
-	public boolean action(String arg0) throws Throwable {
+	public boolean action(String paramString) throws Throwable {
 		// TODO Auto-generated method stub
+
 		String pno = getValue("PNO");
 		ProductDevProjectTableDAO dao = new ProductDevProjectTableDAO(getTalk());
 
 		ProductDevProjectTableBean bean = dao
 				.getProductDevProjectTableBean(pno);
 
-		if (getValue("RD_ATTACHED").trim().length() != 0) {
+		if (getValue("PROJECT_NO").trim().length() != 0) {
 
-			File F1 = getUploadFile("RD_ATTACHED");
-			bean.setRD_ATTACHED("" + F1 + "");
+			bean.setPROJECT_NO(getValue("PROJECT_NO").trim());
 			dao.update(bean);
 			dao = null;
 			return true;
 		}
+		message("專案編號欄位必須輸入!");
 		return false;
 	}
-
 }

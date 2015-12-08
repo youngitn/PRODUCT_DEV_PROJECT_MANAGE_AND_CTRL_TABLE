@@ -1,34 +1,32 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.FlowApprovedAction;
-
-//com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/FlowApprovedAction/UpdateAttached
-import java.io.File;
-
+//com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/FlowApprovedAction/UpdateIsApprove
 import jcx.jform.bProcFlow;
 import SomeUtils.Bean.ProductDevProjectTableBean;
 import SomeUtils.DAO.ProductDevProjectTableDAO;
 
-public class UpdateAttached extends bProcFlow {
+public class UpdateIsApprove  extends bProcFlow {
+
 	/**
-	 * 當流程關卡=研發經辦時,
-	 * 開放研發專用夾檔欄位,並更新到資料庫中。
+	 * 當流程關卡=挖寶尖兵確認時,
+	 * 開放是否立項欄位,並更新到資料庫。
 	 */
 	@Override
-	public boolean action(String arg0) throws Throwable {
+	public boolean action(String paramString) throws Throwable {
 		// TODO Auto-generated method stub
 		String pno = getValue("PNO");
 		ProductDevProjectTableDAO dao = new ProductDevProjectTableDAO(getTalk());
-
+		
 		ProductDevProjectTableBean bean = dao
 				.getProductDevProjectTableBean(pno);
+		
+		if (getValue("IS_APPROVE").trim().length() != 0) {
 
-		if (getValue("RD_ATTACHED").trim().length() != 0) {
-
-			File F1 = getUploadFile("RD_ATTACHED");
-			bean.setRD_ATTACHED("" + F1 + "");
+			bean.setIS_APPROVE(getValue("IS_APPROVE").trim());
 			dao.update(bean);
 			dao = null;
 			return true;
 		}
+		message("是否立項欄位必須核選!");
 		return false;
 	}
 
