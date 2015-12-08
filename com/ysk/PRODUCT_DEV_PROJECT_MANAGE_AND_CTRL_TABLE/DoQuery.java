@@ -23,6 +23,7 @@ public class DoQuery extends _hproc {
 		list.add(new QueryItem("REQ_EMPID", "申請人員編", 1));
 		list.add(new QueryItem("DATE", "申請日期", 2));
 		list.add(new QueryItem("PROJECT_NO", "專案編號", 1));
+
 		/**
 		 * 以下開始為非主檔資料表資料. 查詢簽核狀態的SQL指令 直接用字串參數丟進去做為DB欄位名稱,"簽核狀態"為 table
 		 * header,0表示在setQueryTable中不做為查詢條件.
@@ -34,7 +35,12 @@ public class DoQuery extends _hproc {
 		list.add(new QueryItem("'簽核紀錄'", "簽核紀錄", 0));
 		list.add(new QueryItem("'詳細資訊'", "詳細資訊", 0));
 		list.add(new QueryItem("'編輯'", "管控時間檔", 0));
-
+		
+		list.add(new QueryItem("P_NAME", "品項名稱", 1));
+		list.add(new QueryItem("IS_APPROVE", "是否立項", 1));
+		list.add(new QueryItem("MEDICINE_TYPE", "藥品分類", 1));
+		list.add(new QueryItem("EXP_DATE", "預定完成日期", 2));
+		list.add(new QueryItem("DEV_TYPE","開發類型", 1));
 		/**
 		 * 參數 1,4 代表
 		 * LIST當中的元素位置,會使用到含"員工編號"&"簽核狀態"的元素,各位於list第1和第4的位置.(ArrayList從0開始算)
