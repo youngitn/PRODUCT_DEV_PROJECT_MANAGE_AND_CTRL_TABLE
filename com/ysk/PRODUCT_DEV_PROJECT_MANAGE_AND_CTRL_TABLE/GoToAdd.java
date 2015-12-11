@@ -22,6 +22,11 @@ public class GoToAdd extends _hproc {
 		setValue("REQ_EMPID_NAME", nowUser.getHecname());
 		setValue("REQ_DEPT_NAME", nowUser.getDepName());
 		setValue("DATE", getToday("YYYYmmdd"));
+		/*
+		 * test download File F1 = new
+		 * File("p_DEV_FILE\\1449540754589_20151028meeting.doc");
+		 * setOutput("application/octet-stream",F1.getName(), F1);
+		 */
 		return value;
 	}
 
