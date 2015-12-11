@@ -14,7 +14,11 @@
 				<!--<exclude name="**/*.class"/>-->
 			</fileset>
 		</copy>
-
+		<copy encoding="UTF-8" includeemptydirs="false" todir="Z:\babylon\yskoa_uat\com\ysk\SUB_PRODUCT_DEV_PROJECT_TABLE">
+			<fileset dir="com\ysk\SUB_PRODUCT_DEV_PROJECT_TABLE">
+				<!--<exclude name="**/*.class"/>-->
+			</fileset>
+		</copy>
 
 
 	</target>
