@@ -1,5 +1,6 @@
 package com.ysk.SUB_PRODUCT_DEV_PROJECT_TABLE;
 //com\ysk\SUB_PRODUCT_DEV_PROJECT_TABLE\Init
+import jcx.db.talk;
 import SomeUtils._hproc;
 import SomeUtils.Bean.ProductDevProjectTableBean;
 import SomeUtils.Bean.UserInfoViewBean;
@@ -40,7 +41,29 @@ public class Init extends _hproc {
 		UserInfoViewBean user = getUserInfo(pbean.getREQ_EMPID().trim());
 		setValue("REQ_EMPID_NAME", user.getHecname().trim());
 		setValue("REQ_DEPT_NAME", user.getDepName().trim());
-
+		
+		if (POSITION == 5 && getState().trim().equals("經辦")){
+		
+			switch (Integer.parseInt(getValue("DEPT_FLAG"))) {
+			case 1://行銷 
+				setEditable("SALES_ATTACHED", true);
+				break;
+			case 2://法規 
+				setEditable("LAW_ATTACHED", true);
+				break;
+			case 3://採購
+				setEditable("PURCH_ATTACHED", true);
+				break;
+			case 4:// 製程發展
+				setEditable("PROCESS_ATTACHED", true);
+				break;
+			case 5:// 研發
+				setEditable("RD_ATTACHED", true);
+				break;
+			}
+		}
+		
+		
 		return paramString;
 
 	}
