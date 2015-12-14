@@ -1,10 +1,10 @@
-package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.FlowApprovedAction;
+package com.ysk.SUB_PRODUCT_DEV_PROJECT_TABLE.FlowApprovedAction;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import jcx.db.talk;
-//com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/FlowApprovedAction/SubFlowIsDone
+//com/ysk/SUB_PRODUCT_DEV_PROJECT_TABLE/FlowApprovedAction/SubFlowIsDone
 import jcx.jform.bProcFlow;
 
 public class SubFlowIsDone extends bProcFlow {
