@@ -15,7 +15,7 @@ public class UpdateAttached extends bProcFlow {
 	@Override
 	public boolean action(String arg0) throws Throwable {
 		// TODO Auto-generated method stub
-		String pno = getValue("PNO");
+		String pno = getValue("MSATER_PNO");
 		ProductDevProjectTableDAO dao = new ProductDevProjectTableDAO(getTalk());
 
 		ProductDevProjectTableBean bean = dao
