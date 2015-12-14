@@ -1,6 +1,5 @@
 package com.ysk.SUB_PRODUCT_DEV_PROJECT_TABLE;
 //com\ysk\SUB_PRODUCT_DEV_PROJECT_TABLE\Init
-import jcx.db.talk;
 import SomeUtils._hproc;
 import SomeUtils.Bean.ProductDevProjectTableBean;
 import SomeUtils.Bean.UserInfoViewBean;
@@ -8,6 +7,7 @@ import SomeUtils.DAO.ProductDevProjectTableDAO;
 
 public class Init extends _hproc {
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public String action(String paramString) throws Throwable {
 
