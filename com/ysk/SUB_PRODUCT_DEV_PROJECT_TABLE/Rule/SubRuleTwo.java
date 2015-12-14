@@ -39,7 +39,7 @@ public class SubRuleTwo extends _bRule {
 		case 2:// 產品法規 DEP_NO=16 K10636
 			DEP_NO = "16";
 			break;
-		case 3:// 空白
+		case 3:// 空白 跳簽
 			return idVector;
 		case 4:// 製程發展主管 DEP_NO=50 K10635
 			DEP_NO = "50";
