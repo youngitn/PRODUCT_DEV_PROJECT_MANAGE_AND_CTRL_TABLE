@@ -62,6 +62,10 @@ public class Init extends _hproc {
 				break;
 			}
 		}
+		if (POSITION == 5 && getState().trim().equals("相關單位主管")){
+			setVisible("BACK_TO_MAIN_FLOW", true);
+			setEditable("BACK_TO_MAIN_FLOW", true);
+		}
 		
 		
 		return paramString;

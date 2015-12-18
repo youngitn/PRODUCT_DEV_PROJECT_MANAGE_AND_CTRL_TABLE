@@ -14,27 +14,11 @@ public class Init extends _hproc {
 	@Override
 	public String action(String paramString) throws Throwable {
 		// TODO Auto-generated method stub
-		if (POSITION == 5) {
-
-			if (getState().equals("祇竒快")) {
-				setEditable("RD_ATTACHED", true);
-			}
-			if (getState().equals("︽綪竒快")) {
-				setEditable("SALES_ATTACHED", true);
-			}
-			if (getState().equals("猭砏竒快")) {
-				setEditable("LAW_ATTACHED", true);
-			}
-			if (getState().equals("蹦潦揭竒快")) {
-				setEditable("PURCH_ATTACHED", true);
-			}
-			if (getState().equals("籹祘祇甶竒快")) {
-				setEditable("PROCESS_ATTACHED", true);
-			}
-
-			if (getState().equals("腳絋粄")) {
-				setEditable("IS_APPROVE", true);
-			}
+		if (getState().equals("腳絋粄")){
+			setEditable("IS_APPROVE",true);
+		}
+		if (getState().equals("穦璸恨")){
+			setEditable("PROJECT_NO",true);
 		}
 
 		return null;

@@ -1,6 +1,8 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_SCHEDULE;
 
 //com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_SCHEDULE/DoAdd;
+import java.io.File;
+
 import SomeUtils._hproc;
 import SomeUtils.Bean.ProductDevProjectScheduleBean;
 import SomeUtils.DAO.ProductDevProjectScheduleDAO;
@@ -28,6 +30,11 @@ public class DoAdd extends _hproc {
 
 		};
 		if (checkEmpty(field)) {
+			
+			File F1 = getUploadFile("REFERENCE_FILE_1");
+			File F2 = getUploadFile("REFERENCE_FILE_2");
+			File F3 = getUploadFile("REFERENCE_FILE_3");
+			System.out.println(""+F1+"");
 			ProductDevProjectScheduleBean bean = new ProductDevProjectScheduleBean(
 					createPNO("PNO", getToday("YYYYmmdd"), "PRODUCT_DEV_PROJECT_SCHEDULE"), 
 					getValue("PROJECT_NO"), 
@@ -40,9 +47,9 @@ public class DoAdd extends _hproc {
 					getValue("EXP_REPORTING_DATE"), 
 					getValue("PROJECT_STATUS"), 
 					getValue("CLOSING_DATE"), 
-					getValue("REFERENCE_FILE_1"), 
-					getValue("REFERENCE_FILE_2"), 
-					getValue("REFERENCE_FILE_3"));
+					""+F1+"", 
+					""+F2+"", 
+					""+F3+"");
 			
 			ProductDevProjectScheduleDAO pScheduleDAO = new ProductDevProjectScheduleDAO(
 					getTalk());

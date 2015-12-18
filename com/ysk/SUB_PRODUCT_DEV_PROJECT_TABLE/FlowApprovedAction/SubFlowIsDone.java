@@ -39,7 +39,9 @@ public class SubFlowIsDone extends bProcFlow {
 					+ " VALUES ('" + PNO + "' ,'挖寶尖兵確認','各單位相關人員','" + strDate
 					+ "','並行簽核流程')");
 		}
-
+		/*****
+		 * email 寫在此..........
+		 */
 		return true;
 	}
 
