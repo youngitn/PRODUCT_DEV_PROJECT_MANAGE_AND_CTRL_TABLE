@@ -111,7 +111,7 @@ public class GoToSchedule extends _hproc {
 			// 沒有起過跟起過都匯執行以下程式,主要也是讀取資料作呈現.
 			System.out.println("OA3XX-----" + isApprove);
 			setValue("PROJECT_NO", pjno);
-			setValue("PROJECT_STATUS", isApprove);
+			//setValue("PROJECT_STATUS", isApprove);
 			setEditable("PROJECT_STATUS", false);
 			setEditable("PROJECT_NO", false);
 			
