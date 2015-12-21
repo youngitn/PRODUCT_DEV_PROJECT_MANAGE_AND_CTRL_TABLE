@@ -19,6 +19,11 @@
 				<!--<exclude name="**/*.class"/>-->
 			</fileset>
 		</copy>
+		<copy encoding="UTF-8" includeemptydirs="false" todir="Z:\babylon\yskoa_uat\com\ysk\PRODUCT_DEV_PROJECT_MAINTAIN">
+			<fileset dir="com\ysk\PRODUCT_DEV_PROJECT_MAINTAIN">
+				<!--<exclude name="**/*.class"/>-->
+			</fileset>
+		</copy>
 
 
 	</target>
