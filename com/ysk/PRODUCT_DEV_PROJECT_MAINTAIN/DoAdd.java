@@ -3,7 +3,6 @@ package com.ysk.PRODUCT_DEV_PROJECT_MAINTAIN;
 //com/ysk/PRODUCT_DEV_PROJECT_MAINTAIN/DoAdd;
 import SomeUtils._hproc;
 
-import com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.PRODUCT_DEV_PROJECT_TABLE_FINAL_CONFIG;
 import com.ysk.field.Flow;
 
 /**
@@ -23,7 +22,7 @@ public class DoAdd extends _hproc {
 				{ "REQ_EMPID", "申請人" }
 				};
 		if (checkEmpty(field)) {
-			DoInster("PRODUCT_DEV_PROJECT_MAINTAIN", "課主管");
+			DoInster("PRODUCT_DEV_PROJECT_MAINTAIN", "課主管");		
 			sendEmailAfterAdd(getValue("REQ_EMPID").trim(), "SUB:課主管",
 					"內容:課主管", null, "", Flow.FLOW_SING_LEVEL_11);
 		}

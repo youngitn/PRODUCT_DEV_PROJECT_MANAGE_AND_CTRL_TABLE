@@ -1,7 +1,9 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MAINTAIN;
 
-//com/ysk/PRODUCT_DEV_PROJECT_MAINTAIN/GoNext;
+//com/ysk/PRODUCT_DEV_PROJECT_MAINTAIN/GoToPTime;
 //import com.ysk.bean.UserInfoViewBean;
+import jcx.db.talk;
+
 import org.apache.commons.lang.StringUtils;
 
 import SomeUtils._hproc;
@@ -14,20 +16,22 @@ import SomeUtils.DAO.ProductDevProjectScheduleDAO;
  * @author b0050
  *
  */
-public class GoNext extends _hproc {
+public class GoToPTime extends _hproc {
 	@SuppressWarnings("deprecation")
 	@Override
 	public String action(String value) throws Throwable {
 		// 可自定HTML版本各欄位的預設值與按鈕的動作
 		// 傳入值 value
 		//
-
+		String PNO = getValue("PNO").trim();
 		String pjno = getValue("PROJECT_NO").trim();
+		String mType = getValue("MAINTAIN_TYPE").trim();
 		if (pjno.length() == 0){
 			addScript("window.close();");
 			message("專案編號不可空白!");
 			
 		}
+		
 		// 已賦予專案編號即可編輯時程管控.
 		if (!StringUtils.isEmpty(pjno)) {
 			ProductDevProjectScheduleDAO dao = new ProductDevProjectScheduleDAO(
@@ -39,7 +43,10 @@ public class GoNext extends _hproc {
 			// + pjno + "'");
 
 		
-			setVisible("DoAdd", true);
+			
+			
+			
+			
 			// 沒起過才進下面 if 主要是做讀取資料的動作:
 			if (bean != null) {
 
@@ -56,7 +63,7 @@ public class GoNext extends _hproc {
 				setValue("EXP_STABILITY_SAMPLES_PLACED_DATE",
 						bean.getEXP_STABILITY_SAMPLES_PLACED_DATE());
 				setValue("EXP_REPORTING_DATE", bean.getEXP_REPORTING_DATE());
-				setValue("PROJECT_STATUS", bean.getPROJECT_STATUS());
+				setValue("PROJECT_STATUS", mType);
 				setValue("CLOSING_DATE", bean.getCLOSING_DATE());
 
 				if (!StringUtils.isEmpty(bean.getREFERENCE_FILE_1().trim())) {
@@ -78,8 +85,39 @@ public class GoNext extends _hproc {
 							.trim());
 
 				}
+				if (bean.getREFERENCE_FILE_1().length()< 4 || bean.getREFERENCE_FILE_1().trim().equals("null")) {
+
+					setVisible("REFERENCE_FILE_1", false);
+				}
+				if (bean.getREFERENCE_FILE_2().length() < 4 || bean.getREFERENCE_FILE_2().trim().equals("null")) {
+
+					setVisible("REFERENCE_FILE_2", false);
+				}
+				if (bean.getREFERENCE_FILE_3().length() < 4 || bean.getREFERENCE_FILE_3().trim().equals("null")) {
+
+					setVisible("REFERENCE_FILE_3", false);
+				}
 			}
 
+		}
+		
+		/**
+		 * 判斷異動類別是否等於1 進度更新等條件..
+		 */
+		talk t = getTalk();
+		String ret[][] = t
+				.queryFromPool("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
+						+ PNO + "'");
+		System.out.println("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
+				+ getValue("PNO").trim() + "'");
+		if (getValue("MAINTAIN_TYPE").trim().equals("1") 
+				&& POSITION != 5
+				&& ret[0][0].trim().equals("課主管")) {
+			
+			setVisible("REFERENCE_FILE_1", true);
+			setVisible("REFERENCE_FILE_2", true);
+			setVisible("REFERENCE_FILE_3", true);
+			setVisible("DO_UPDATE", true);
 		}
 
 		return value;

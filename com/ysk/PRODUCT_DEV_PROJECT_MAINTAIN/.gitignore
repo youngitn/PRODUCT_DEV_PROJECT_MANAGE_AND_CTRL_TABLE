@@ -3,3 +3,6 @@
 /GoNext.class
 /Init.class
 /DoQuery.class
+/QueryTableButton_Detail.class
+/GoToPTable.class
+/GoToPTime.class

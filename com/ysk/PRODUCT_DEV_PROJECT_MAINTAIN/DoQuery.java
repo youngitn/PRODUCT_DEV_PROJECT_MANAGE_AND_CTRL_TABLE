@@ -23,7 +23,9 @@ public class DoQuery extends _hproc {
 		list.add(new QueryItem("REQ_EMPID", "申請人員編", 1));
 		list.add(new QueryItem("MAINTAIN_DATE", "申請日期", 2));
 		list.add(new QueryItem("PROJECT_NO", "專案編號", 1));
-
+		list.add(new QueryItem("MAINTAIN_TYPE", "異動類型", 1));
+		list.add(new QueryItem("(select NAME from PRODUCT_DEV_PROJECT_MAINTAIN_TYPE where TYPE_NO = a.MAINTAIN_TYPE)", "異動名稱", 0));
+		
 		/**
 		 * 以下開始為非主檔資料表資料. 查詢簽核狀態的SQL指令 直接用字串參數丟進去做為DB欄位名稱,"簽核狀態"為 table
 		 * header,0表示在setQueryTable中不做為查詢條件.
@@ -42,7 +44,7 @@ public class DoQuery extends _hproc {
 		 * 參數 otherConditionString 額外的查詢條件 .
 		 */
 		setQueryTable(list, "PRODUCT_DEV_PROJECT_MAINTAIN",
-				"研發產品管控表異動申請單", 1, 4, "");
+				"研發產品管控表異動申請單", 1, 6, "");
 		list.clear();
 		return value;
 	}
