@@ -3,6 +3,7 @@ package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_SCHEDULE;
 //com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_SCHEDULE/DoUpdate;
 import java.io.File;
 
+import jcx.db.talk;
 import SomeUtils._hproc;
 import SomeUtils.Bean.ProductDevProjectScheduleBean;
 import SomeUtils.DAO.ProductDevProjectScheduleDAO;
@@ -30,19 +31,19 @@ public class DoUpdate extends _hproc {
 		 * };
 		 */
 		// if (checkEmpty(field)) {
-
-		String pNo = getValue("PROJECT_NO").trim();
+		talk t = getTalk();
+		String projNo = getValue("PROJECT_NO").trim();
 		ProductDevProjectScheduleDAO pScheduleDAO = new ProductDevProjectScheduleDAO(
-				getTalk());
+				t);
 		ProductDevProjectScheduleBean bean = pScheduleDAO
-				.getProductDevProjectScheduleBeanByProjectNo(pNo);
+				.getProductDevProjectScheduleBeanByProjectNo(projNo);
 
 		File F1 = getUploadFile("REFERENCE_FILE_1");
 		File F2 = getUploadFile("REFERENCE_FILE_2");
 		File F3 = getUploadFile("REFERENCE_FILE_3");
 		System.out.println("" + F1 + "");
 
-		bean.setPROJECT_NO(pNo);
+		bean.setPROJECT_NO(projNo);
 		bean.setEXP_MATERIAL_ATTENDANCE_DATE(getValue("EXP_MATERIAL_ATTENDANCE_DATE").trim());
 		bean.setEXP_SMALL_TEST_DATE(getValue("EXP_SMALL_TEST_DATE").trim());
 		bean.setEXP_SMALL_TEST_END_DATE(getValue("EXP_SMALL_TEST_END_DATE").trim());
@@ -57,6 +58,9 @@ public class DoUpdate extends _hproc {
 		bean.setREFERENCE_FILE_3("" + F3 + "");
 		
 		pScheduleDAO.update(bean);
+		t.execFromPool("update PRODUCT_DEV_PROJECT_MAINTAIN set PTIME_MAINTAIN = '1' where PNO = '"
+				+ getValue("MAINTAIN_PNO").trim() + "'");
+		t.close();
 		addScript("document.location.reload(true)");
 		// }
 		return value;
