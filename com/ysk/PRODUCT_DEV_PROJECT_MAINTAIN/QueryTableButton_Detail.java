@@ -33,6 +33,11 @@ public class QueryTableButton_Detail extends _bproc {
 		UserInfoViewBean user = getUserInfo(ret[0][2].trim());
 		setValue("REQ_EMPID_NAME", user.getHecname().trim());
 		setValue("REQ_DEPT_NAME", user.getDepName().trim());
+		setValue("FF1", ret[0][5].trim());
+		setValue("FF2", ret[0][6].trim());
+		setValue("FF3", ret[0][7].trim());
+		setValue("PTABLE_MAINTAIN", ret[0][8].trim());
+		setValue("PTIME_MAINTAIN", ret[0][9].trim());
 		// QUERY SEND COMPUTE
 		setVisible("DoAdd", false);
 		ret = t.queryFromPool("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
@@ -41,7 +46,7 @@ public class QueryTableButton_Detail extends _bproc {
 				.println("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
 						+ getValue("PNO").trim() + "'");
 		if (getValue("MAINTAIN_TYPE").trim().equals("1") && POSITION != 5
-				&& ret[0][0].trim().equals("½Ò¥DºÞ")) {
+				&& ret[0][0].trim().equals(PRODUCT_DEV_PROJECT_MAINTAIN_FINAL_CONFIG.MAINTAIN_OK_STAT)) {
 
 			setVisible("MAINTAIN_FINISH", true);
 
