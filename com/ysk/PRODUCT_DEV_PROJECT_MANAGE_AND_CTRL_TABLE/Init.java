@@ -20,7 +20,7 @@ public class Init extends _hproc {
 		if (getState().equals("會計主管")){
 			setEditable("PROJECT_NO",true);
 		}
-
+		
 		return null;
 	}
 
