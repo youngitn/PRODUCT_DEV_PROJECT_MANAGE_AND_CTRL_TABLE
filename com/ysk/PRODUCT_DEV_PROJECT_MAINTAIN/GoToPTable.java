@@ -1,8 +1,6 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MAINTAIN;
 
 //com\ysk\PRODUCT_DEV_PROJECT_MAINTAIN\GoToPTable
-import com.yhk.action.PersonnelOperate.PersonnelInformation.ToDoList;
-
 import jcx.db.talk;
 import SomeUtils._hproc;
 import SomeUtils.Bean.ProductDevProjectTableBean;
@@ -16,7 +14,10 @@ public class GoToPTable extends _hproc {
 	public String action(String paramString) throws Throwable {
 
 		String PROJECT_NO = getValue("PROJECT_NO").trim();
-
+		//取得maintain的PNO
+		String PNO = getValue("PNO").trim();
+		String PTABLE_MAINTAIN = getValue("PTABLE_MAINTAIN").trim();
+		System.out.println("PTABLE_MAINTAIN= "+PTABLE_MAINTAIN);
 		if (PROJECT_NO.length() == 0) {
 			addScript("window.close();");
 			message("專案編號不可空白!");
@@ -28,6 +29,7 @@ public class GoToPTable extends _hproc {
 
 		// TODO Auto-generated method stub
 		// message(user.getEmpid());
+		setValue("PNO", pbean.getPNO().trim());
 		setValue("DATE", pbean.getDATE().trim());
 		setValue("P_NAME", pbean.getP_NAME().trim());
 		setValue("DESCRIPTION", pbean.getDESCRIPTION().trim());
@@ -50,6 +52,7 @@ public class GoToPTable extends _hproc {
 		UserInfoViewBean user = getUserInfo(pbean.getREQ_EMPID().trim());
 		setValue("REQ_EMPID_NAME", user.getHecname().trim());
 		setValue("REQ_DEPT_NAME", user.getDepName().trim());
+		setValue("MAINTAIN_PNO", PNO);
 
 		/*
 		 * if (POSITION == 5 && getState().trim().equals("經辦")){
@@ -68,17 +71,21 @@ public class GoToPTable extends _hproc {
 		talk t = getTalk();
 		String ret[][] = t
 				.queryFromPool("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO='"
-						+ getValue("PNO").trim() + "'");
+						+ PNO + "'");
 		
 		if (getValue("MAINTAIN_TYPE").trim().equals("1") 
 				&& POSITION != 5
-				&& ret[0][0].trim().equals("課主管")) {
+				&& ret[0][0].trim().equals(PRODUCT_DEV_PROJECT_MAINTAIN_FINAL_CONFIG.MAINTAIN_OK_STAT)) {
 			
 			setEditable("SALES_ATTACHED", true);
 			setEditable("LAW_ATTACHED", true);
 			setEditable("PURCH_ATTACHED", true);
 			setEditable("PROCESS_ATTACHED", true);
 			setEditable("RD_ATTACHED", true);
+			setVisible("DO_UPDATE", true);
+		}
+		if (!"".equals(PTABLE_MAINTAIN)) {
+			setVisible("DO_UPDATE", false);
 		}
 
 		return paramString;

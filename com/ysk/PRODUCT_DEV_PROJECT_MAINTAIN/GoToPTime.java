@@ -22,16 +22,18 @@ public class GoToPTime extends _hproc {
 	public String action(String value) throws Throwable {
 		// 可自定HTML版本各欄位的預設值與按鈕的動作
 		// 傳入值 value
-		//
+		// MAINTAIN pno
 		String PNO = getValue("PNO").trim();
 		String pjno = getValue("PROJECT_NO").trim();
 		String mType = getValue("MAINTAIN_TYPE").trim();
-		if (pjno.length() == 0){
+		String PTIME_MAINTAIN = getValue("PTIME_MAINTAIN").trim();
+		System.out.println("PTIME_MAINTAIN= " + PTIME_MAINTAIN);
+		if (pjno.length() == 0) {
 			addScript("window.close();");
 			message("專案編號不可空白!");
-			
+
 		}
-		
+
 		// 已賦予專案編號即可編輯時程管控.
 		if (!StringUtils.isEmpty(pjno)) {
 			ProductDevProjectScheduleDAO dao = new ProductDevProjectScheduleDAO(
@@ -42,11 +44,6 @@ public class GoToPTime extends _hproc {
 			// "select * from PRODUCT_DEV_PROJECT_SCHEDULE where PROJECT_NO = '"
 			// + pjno + "'");
 
-		
-			
-			
-			
-			
 			// 沒起過才進下面 if 主要是做讀取資料的動作:
 			if (bean != null) {
 
@@ -85,22 +82,25 @@ public class GoToPTime extends _hproc {
 							.trim());
 
 				}
-				if (bean.getREFERENCE_FILE_1().length()< 4 || bean.getREFERENCE_FILE_1().trim().equals("null")) {
+				if (bean.getREFERENCE_FILE_1().length() < 4
+						|| bean.getREFERENCE_FILE_1().trim().equals("null")) {
 
 					setVisible("REFERENCE_FILE_1", false);
 				}
-				if (bean.getREFERENCE_FILE_2().length() < 4 || bean.getREFERENCE_FILE_2().trim().equals("null")) {
+				if (bean.getREFERENCE_FILE_2().length() < 4
+						|| bean.getREFERENCE_FILE_2().trim().equals("null")) {
 
 					setVisible("REFERENCE_FILE_2", false);
 				}
-				if (bean.getREFERENCE_FILE_3().length() < 4 || bean.getREFERENCE_FILE_3().trim().equals("null")) {
+				if (bean.getREFERENCE_FILE_3().length() < 4
+						|| bean.getREFERENCE_FILE_3().trim().equals("null")) {
 
 					setVisible("REFERENCE_FILE_3", false);
 				}
 			}
 
 		}
-		
+
 		/**
 		 * 判斷異動類別是否等於1 進度更新等條件..
 		 */
@@ -108,18 +108,24 @@ public class GoToPTime extends _hproc {
 		String ret[][] = t
 				.queryFromPool("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
 						+ PNO + "'");
-		System.out.println("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
-				+ getValue("PNO").trim() + "'");
-		if (getValue("MAINTAIN_TYPE").trim().equals("1") 
+		System.out
+				.println("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
+						+ getValue("PNO").trim() + "'");
+		if (getValue("MAINTAIN_TYPE").trim().equals("1")
 				&& POSITION != 5
-				&& ret[0][0].trim().equals("課主管")) {
-			
+				&& ret[0][0]
+						.trim()
+						.equals(PRODUCT_DEV_PROJECT_MAINTAIN_FINAL_CONFIG.MAINTAIN_OK_STAT)) {
+
 			setVisible("REFERENCE_FILE_1", true);
 			setVisible("REFERENCE_FILE_2", true);
 			setVisible("REFERENCE_FILE_3", true);
 			setVisible("DO_UPDATE", true);
 		}
-
+		setValue("MAINTAIN_PNO", PNO);
+		if (!"".equals(PTIME_MAINTAIN)) {
+			setVisible("DO_UPDATE", false);
+		}
 		return value;
 	}
 
