@@ -1,4 +1,5 @@
 package com.ysk.SUB_PRODUCT_DEV_PROJECT_TABLE;
+
 //com\ysk\SUB_PRODUCT_DEV_PROJECT_TABLE\Init
 import SomeUtils._hproc;
 import SomeUtils.Bean.ProductDevProjectTableBean;
@@ -41,17 +42,17 @@ public class Init extends _hproc {
 		UserInfoViewBean user = getUserInfo(pbean.getREQ_EMPID().trim());
 		setValue("REQ_EMPID_NAME", user.getHecname().trim());
 		setValue("REQ_DEPT_NAME", user.getDepName().trim());
-		
-		if (POSITION == 5 && getState().trim().equals("經辦")){
-		
+
+		if (POSITION == 5 && getState().trim().equals("經辦")) {
+
 			switch (Integer.parseInt(getValue("DEPT_FLAG"))) {
-			case 1://行銷 
+			case 1:// 行銷
 				setEditable("SALES_ATTACHED", true);
 				break;
-			case 2://法規 
+			case 2:// 法規
 				setEditable("LAW_ATTACHED", true);
 				break;
-			case 3://採購
+			case 3:// 採購
 				setEditable("PURCH_ATTACHED", true);
 				break;
 			case 4:// 製程發展
@@ -61,13 +62,16 @@ public class Init extends _hproc {
 				setEditable("RD_ATTACHED", true);
 				break;
 			}
+
 		}
-		if (POSITION == 5 && getState().trim().equals("相關單位主管")){
+		if (POSITION == 5 && getState().trim().equals("相關單位主管")) {
 			setVisible("BACK_TO_MAIN_FLOW", true);
 			setEditable("BACK_TO_MAIN_FLOW", true);
 		}
-		
-		
+		setValue("SAMPLE_DOWNLOAD", "<button onclick=\"location.href='"
+				+ getDownloadURL("p_DEV_FILE\\BPOA311-sample.doc")
+				+ "'\";>夾檔文件下載</button>");
+
 		return paramString;
 
 	}
