@@ -53,9 +53,16 @@ public class QueryTableButton_SubSignHis extends _bproc {
 
 		}
 
-		setTableHeader("SUB_FLOW_STATE", new String[] { "主單單號", "子單單號", "目前關卡",
-				"簽核人員" });
-		setTableData("SUB_FLOW_STATE", ret);
+		if (ret.length == 0) {
+			addScript("window.close();");
+			message("尚無資料!");
+
+		} else {
+			setTableHeader("SUB_FLOW_STATE", new String[] { "主單單號", "子單單號",
+					"目前關卡", "簽核人員" });
+			setTableData("SUB_FLOW_STATE", ret);
+		}
+
 		return null;
 	}
 
