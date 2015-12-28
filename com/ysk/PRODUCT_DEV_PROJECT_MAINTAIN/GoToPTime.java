@@ -111,17 +111,20 @@ public class GoToPTime extends _hproc {
 		System.out
 				.println("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO = '"
 						+ getValue("PNO").trim() + "'");
-		if (getValue("MAINTAIN_TYPE").trim().equals("1")
-				&& POSITION != 5
-				&& ret[0][0]
-						.trim()
-						.equals(PRODUCT_DEV_PROJECT_MAINTAIN_FINAL_CONFIG.MAINTAIN_OK_STAT)) {
+		if (ret.length != 0){
+			if (getValue("MAINTAIN_TYPE").trim().equals("1")
+					&& POSITION != 5
+					&& ret[0][0]
+							.trim()
+							.equals(PRODUCT_DEV_PROJECT_MAINTAIN_FINAL_CONFIG.MAINTAIN_OK_STAT)) {
 
-			setVisible("REFERENCE_FILE_1", true);
-			setVisible("REFERENCE_FILE_2", true);
-			setVisible("REFERENCE_FILE_3", true);
-			setVisible("DO_UPDATE", true);
+				setVisible("REFERENCE_FILE_1", true);
+				setVisible("REFERENCE_FILE_2", true);
+				setVisible("REFERENCE_FILE_3", true);
+				setVisible("DO_UPDATE", true);
+			}
 		}
+		
 		setValue("MAINTAIN_PNO", PNO);
 		if (!"".equals(PTIME_MAINTAIN)) {
 			setVisible("DO_UPDATE", false);
