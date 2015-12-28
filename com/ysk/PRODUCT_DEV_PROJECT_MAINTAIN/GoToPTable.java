@@ -72,18 +72,20 @@ public class GoToPTable extends _hproc {
 		String ret[][] = t
 				.queryFromPool("select F_INP_STAT from PRODUCT_DEV_PROJECT_MAINTAIN_FLOWC where PNO='"
 						+ PNO + "'");
-		
-		if (getValue("MAINTAIN_TYPE").trim().equals("1") 
-				&& POSITION != 5
-				&& ret[0][0].trim().equals(PRODUCT_DEV_PROJECT_MAINTAIN_FINAL_CONFIG.MAINTAIN_OK_STAT)) {
-			
-			setEditable("SALES_ATTACHED", true);
-			setEditable("LAW_ATTACHED", true);
-			setEditable("PURCH_ATTACHED", true);
-			setEditable("PROCESS_ATTACHED", true);
-			setEditable("RD_ATTACHED", true);
-			setVisible("DO_UPDATE", true);
+		if (ret.length != 0){
+			if (getValue("MAINTAIN_TYPE").trim().equals("1") 
+					&& POSITION != 5
+					&& ret[0][0].trim().equals(PRODUCT_DEV_PROJECT_MAINTAIN_FINAL_CONFIG.MAINTAIN_OK_STAT)) {
+				
+				setEditable("SALES_ATTACHED", true);
+				setEditable("LAW_ATTACHED", true);
+				setEditable("PURCH_ATTACHED", true);
+				setEditable("PROCESS_ATTACHED", true);
+				setEditable("RD_ATTACHED", true);
+				setVisible("DO_UPDATE", true);
+			}
 		}
+		
 		if (!"".equals(PTABLE_MAINTAIN)) {
 			setVisible("DO_UPDATE", false);
 		}
