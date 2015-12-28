@@ -25,7 +25,8 @@ public class DoQuery extends _hproc {
 		list.add(new QueryItem("PROJECT_NO", "專案編號", 1));
 		list.add(new QueryItem("MAINTAIN_TYPE", "異動類型", 1));
 		list.add(new QueryItem("(select NAME from PRODUCT_DEV_PROJECT_MAINTAIN_TYPE where TYPE_NO = a.MAINTAIN_TYPE)", "異動名稱", 0));
-		
+		list.add(new QueryItem("PTABLE_MAINTAIN", "是否已修改管控表", 1));
+		list.add(new QueryItem("PTIME_MAINTAIN", "是否已修改時間檔", 1));
 		/**
 		 * 以下開始為非主檔資料表資料. 查詢簽核狀態的SQL指令 直接用字串參數丟進去做為DB欄位名稱,"簽核狀態"為 table
 		 * header,0表示在setQueryTable中不做為查詢條件.
