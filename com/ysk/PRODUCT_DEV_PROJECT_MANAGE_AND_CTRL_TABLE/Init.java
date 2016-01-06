@@ -18,11 +18,25 @@ public class Init extends _hproc {
 			if (getState().equals("挖寶尖兵確認")) {
 				setEditable("IS_APPROVE", true);
 			}
-			if (getState().equals("會計主管")) {
+			if (getState().equals("會計經辦")) {
 				setEditable("PROJECT_NO", true);
 			}
+			checkAttch("SALES_ATTACHED");
+			checkAttch("LAW_ATTACHED");
+			checkAttch("PURCH_ATTACHED");
+			checkAttch("RD_ATTACHED");
+			checkAttch("PROCESS_ATTACHED");
 		}
 		return null;
+	}
+
+	public void checkAttch(String attName) {
+		// TODO Auto-generated method stub
+
+		if (getValue(attName) == null || getValue(attName).trim().length() == 0) {
+			setValue(attName, "");
+		}
+
 	}
 
 }
