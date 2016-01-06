@@ -35,7 +35,7 @@ public class DoQuery extends _hproc {
 		list.add(new QueryItem("'簽核紀錄'", "簽核紀錄", 0));
 		list.add(new QueryItem("'詳細資訊'", "詳細資訊", 0));
 		list.add(new QueryItem("'相關單位簽核紀錄'", "相關單位簽核紀錄", 0));
-		
+		list.add(new QueryItem("'建立'", "管控時間檔", 0));
 		list.add(new QueryItem("P_NAME", "品項名稱", 1));
 		list.add(new QueryItem("IS_APPROVE", "是否立項", 1));
 		list.add(new QueryItem("MEDICINE_TYPE", "藥品分類", 1));
