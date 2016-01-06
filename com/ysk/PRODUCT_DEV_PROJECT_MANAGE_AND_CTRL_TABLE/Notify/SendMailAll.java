@@ -1,4 +1,5 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.Notify;
+
 // com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/Notify/SendMailAll
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,40 +14,40 @@ public class SendMailAll extends bProcFlow {
 		// 回傳值為 true 表示執行接下來的流程處理
 		// 回傳值為 false 表示接下來不執行任何流程處理
 		// 傳入值 value 為 "核准"
+		if (!getValue("IS_APPROVE").trim().equals("Y")) {
+			BaseService service = new BaseService();
 
-		BaseService service = new BaseService();
+			String sendRS = "";
+			String email;
+			String[] AllApprovePeople = getAllApprovePeople();
+			String title = "相關人員通知.";
+			String content = getState();
+			int isEmailAllSend = 0;
 
-		String sendRS = "";
-		String email;
-		String[] AllApprovePeople = getAllApprovePeople();
-		String title = getState();
-		String content = getState();
-		int isEmailAllSend = 0;
+			for (String peopleString : AllApprovePeople) {
+				// System.out.println("value=" + it.next().toString());
 
-		for (String peopleString : AllApprovePeople) {
-			// System.out.println("value=" + it.next().toString());
+				email = getEmail(peopleString);
+				// email = service.getUserInfoBean(peopleString).getEmail();
+				String usr[] = { email };
 
-			email = getEmail(peopleString);
-			// email = service.getUserInfoBean(peopleString).getEmail();
-			String usr[] = { email };
+				sendRS = service.sendMailbccUTF8(usr, title, content, null, "",
+						"text/html");
+				// if send mail Sending Failed,isEmailAllSend will +1 for check.
+				if (!sendRS.trim().equals("")) {
+					isEmailAllSend++;
+				}
 
-			sendRS = service.sendMailbccUTF8(usr, title, content, null, "",
-					"text/html");
-			// if send mail Sending Failed,isEmailAllSend will +1 for check.
-			if (!sendRS.trim().equals("")) {
-				isEmailAllSend++;
 			}
 
+			if (isEmailAllSend != 0) {
+				message("EMAIL寄出失敗");
+				return false;
+
+			}
+
+			message("EMAIL已寄出通知");
 		}
-
-		if (isEmailAllSend != 0) {
-			message("EMAIL寄出失敗");
-			return false;
-
-		}
-
-		message("EMAIL已寄出通知");
-
 		return true;
 
 	}
