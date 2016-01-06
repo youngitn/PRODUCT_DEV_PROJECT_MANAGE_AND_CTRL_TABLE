@@ -34,8 +34,8 @@ public class DoAdd extends _hproc {
 			setValue("PTABLE_MAINTAIN", "0");
 			setValue("PTIME_MAINTAIN", "0");
 			DoInster("PRODUCT_DEV_PROJECT_MAINTAIN", "課主管");
-			sendEmailAfterAdd(getValue("REQ_EMPID").trim(), "SUB:課主管",
-					"內容:課主管", null, "", Flow.FLOW_SING_LEVEL_11);
+			sendEmailAfterAdd(getValue("REQ_EMPID").trim(), "課主管收",
+					"內容:課主管收", null, "", Flow.FLOW_SING_LEVEL_11);
 		}
 		return value;
 	}
