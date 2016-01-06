@@ -1,6 +1,6 @@
 package com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE;
 
-//com.ysk.PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE.GoToSchedule
+//com/ysk/PRODUCT_DEV_PROJECT_MANAGE_AND_CTRL_TABLE/GoToSchedule
 //import com.ysk.bean.UserInfoViewBean;
 import org.apache.commons.lang.StringUtils;
 
