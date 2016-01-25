@@ -4,6 +4,7 @@ package com.ysk.PRODUCT_DEV_PROJECT_MAINTAIN.Notify;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import jcx.db.talk;
 import jcx.jform.bProcFlow;
 
 import com.ysk.service.BaseService;
@@ -21,8 +22,13 @@ public class SendMailAll extends bProcFlow {
 			String sendRS = "";
 			String email;
 			String[] AllApprovePeople = getAllApprovePeople();
-			String title = "簽核流程完成.";
-			String content = getState();
+			
+			String title = "研發產品管控表異動申請單,簽核完成";
+						
+			String content = "申請單號:"+getValue("PNO")+"<br>";
+			content += "申請日期:" + getValue("MAINTAIN_DATE")+"<br>";
+			content += "申請人:" + getValue("REQ_EMPID")+"  "+getValue("REQ_EMPID_NAME")+"<br>";
+			
 			int isEmailAllSend = 0;
 			System.out.println(AllApprovePeople.toString());
 			for (String peopleString : AllApprovePeople) {

@@ -20,8 +20,12 @@ public class SendMailAll extends bProcFlow {
 			String sendRS = "";
 			String email;
 			String[] AllApprovePeople = getAllApprovePeople();
-			String title = "相關人員通知.";
-			String content = getState();
+			String title = "營銷-研發產品立項研發管控表,請進入系統簽核";
+			
+			
+			String content = "申請單號:"+getValue("PNO")+"<br>";
+			content += "申請日期:" + getValue("MAINTAIN_DATE")+"<br>";
+			content += "申請人:" + getValue("REQ_EMPID")+"  "+getValue("REQ_EMPID_NAME")+"<br>";
 			int isEmailAllSend = 0;
 
 			for (String peopleString : AllApprovePeople) {

@@ -3,7 +3,10 @@ package com.ysk.PRODUCT_DEV_PROJECT_MAINTAIN.Notify;
 //com/ysk/PRODUCT_DEV_PROJECT_MAINTAIN/Notify/EmailNotify
 import java.util.Vector;
 
+import jcx.db.talk;
 import SomeUtils._bNotify;
+import SomeUtils.Bean.OA201ViewBean;
+import SomeUtils.DAO.OA201DAO;
 
 import com.ysk.service.BaseService;
 
@@ -28,9 +31,21 @@ public class EmailNotify extends _bNotify {
 		}
 		if (V2.size() == 0)
 			return;
-		String content = "YSK OA 系統測試信";
-		String title = getState();
-
+		
+		talk t =getTalk();
+				
+		String sqlc;
+		// get sign-page link url.
+		sqlc = "SELECT HRADDR FROM HRSYS";
+		String[][] HRADDR = t.queryFromPool(sqlc);
+		
+		String title = "研發產品管控表異動申請單,請進入系統簽核";
+		
+		
+		String content = "申請單號:"+getValue("PNO")+"<br>";
+		content += "申請日期:" + getValue("MAINTAIN_DATE")+"<br>";
+		content += "申請人:" + getValue("REQ_EMPID")+"  "+getValue("REQ_EMPID_NAME")+"<br>";
+		content += "請進入 eHR 系統簽核( <a href=\"" + HRADDR[0][0].trim() + "\">按此連結</a>)<br>";
 		String usr[] = ((String[]) V2.toArray(new String[0]));
 
 		String sendRS = service.sendMailbccUTF8(usr, title, content, null, "",
